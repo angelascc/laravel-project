@@ -42,4 +42,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // relation
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function from()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'from_id', 'to_id');
+    }
+
+    //friends
+    public function to()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'to_id', 'from_id');
+    }
+
+    public function friendsFrom()
+    {
+        return $this->from()->wherePivot('accepted', true);
+    }
+
+    public function friendsTo()
+    {
+        return $this->to()->wherePivot('accepted', true);
+    }
 }

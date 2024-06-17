@@ -1,17 +1,35 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <x-container>
+        <form action="{{ route('posts.store') }}" class="px-4 mb-8" method="POST">
+            @csrf
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+            <textarea 
+                name="body" 
+                rows="2" 
+                class="w-full mb-2 text-white bg-transparent border-0 border-b-2 border-slate-800 focus:border-b-slate-700 focus:ring-0 resize-none overflow-hidden"
+                placeholder="Your comment..."
+            ></textarea>
+        
+            <input 
+                type="submit"
+                class="px-4 py-2 bg-yellow-400 text-gray-800 font-semibold sm:rounded-lg text-xs"
+            >
+        </form>
+
+        @foreach ($posts as $post)
+            <a href="{{ route('profile.show', $post->user) }}" class="px-6 mb-2 flex items-center gap-2 font-medium text-slate-100">
+            <svg class="h-4" data-slot="icon" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"></path>
+            </svg>
+            {{ $post->user->name }}
+            </a>
+            <x-card class="mb-4">
+                {{ $post->body }}
+
+                <div class="text-xs text-slate-500">
+                    {{ $post->created_at->diffForHumans() }}
                 </div>
-            </div>
-        </div>
-    </div>
+            </x-card>
+        @endforeach
+    </x-container>
 </x-app-layout>
