@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{user}', [PageController::class, 'profile'])->name('profile.show');
 
     Route::post('/friends/{user}', [FriendController::class, 'store'])->name('friends.store');
+
+    Route::get('/status', [PageController::class, 'status'])->name('status');
+
 });
 
 require __DIR__.'/auth.php';

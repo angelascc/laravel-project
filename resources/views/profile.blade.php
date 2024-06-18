@@ -3,11 +3,7 @@
         <form action="{{ route('friends.store', $user) }}" class="px-4 mb-8" method="POST">
             @csrf
             
-            <input 
-                    type="submit"
-                    class="px-4 py-2 bg-yellow-400 text-gray-800 font-semibold sm:rounded-lg text-xs"
-                    value="Add friend"
-                >
+            <x-submit-button>Add friend</x-submit-button>
         </form>
 
         @foreach ($posts as $post)

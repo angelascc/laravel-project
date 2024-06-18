@@ -3,6 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
         <div class="flex my-4">
             <x-nav-link href="/">Home</x-nav-link>
+            <x-nav-link :href="route('status')">Status</x-nav-link>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
