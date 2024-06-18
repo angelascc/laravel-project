@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-container>
-        <form action="" class="px-4 mb-8" method="POST">
+        <form action="{{ route('friends.store', $user) }}" class="px-4 mb-8" method="POST">
             @csrf
             
             <input 
