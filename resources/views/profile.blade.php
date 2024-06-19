@@ -1,10 +1,12 @@
 <x-app-layout>
     <x-container>
-        <form action="{{ route('friends.store', $user) }}" class="px-4 mb-8" method="POST">
-            @csrf
-            
-            <x-submit-button>Add friend</x-submit-button>
-        </form>
+        @if (!auth()->user()->isRelated($user))
+            <form action="{{ route('friends.store', $user) }}" class="px-4 mb-8" method="POST">
+                @csrf
+                
+                <x-submit-button>Add friend</x-submit-button>
+            </form>
+        @endif
 
         @foreach ($posts as $post)
             <x-card class="mb-4">
