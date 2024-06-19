@@ -23,5 +23,13 @@
                 {{ $user->name }}
             </x-card>
         @endforeach
+
+        <h2 class="text-lg mb-4 text-gray-500">Friends </h2>
+
+        @foreach ($friends as $user)
+            <x-card class="mb-4">
+                {{ $user->name }}
+            </x-card>
+        @endforeach
     </x-container>
 </x-app-layout>
