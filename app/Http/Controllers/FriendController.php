@@ -9,6 +9,7 @@ class FriendController extends Controller
 {
     public function store(Request $request, User $user)
     {
+        /*
         $is_from = $request->user()->from()->where('to_id', $user->id)->exists();
         $is_to = $request->user()->to()->where('from_id', $user->id)->exists();
 
@@ -19,8 +20,11 @@ class FriendController extends Controller
         if ($request->user()->id === $user->id) {
             return back();
         }
+        */
 
-        $request->user()->from()->attach($user);
+        if (!$request->user()->isRelated($user)) {
+            $request->user()->from()->attach($user);
+        }
 
         return back();
     }

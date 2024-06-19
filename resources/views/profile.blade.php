@@ -8,6 +8,8 @@
             </form>
         @endif
 
+        <h2 class="text-lg- mb-4 text-gray-500">{{$user->name}}</h2>
+
         @foreach ($posts as $post)
             <x-card class="mb-4">
                 {{ $post->body }}
